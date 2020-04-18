@@ -1,0 +1,81 @@
+<div class="jumbotron jumbotron-fluid text-center">
+  <div class="container-fluid">
+    <h2>
+      Showing result of <span class="text-danger"> {{ currentCountry }} </span>
+    </h2>
+    <hr />
+    <div class="mx-auto">
+      <div class="row">
+        <div class="form-group col-lg-5 mx-auto">
+          <label for="selectCountry"></label>
+          <select
+            class="form-control"
+            name="selectCountry"
+            id="selectCountry"
+            #select
+            (change)="updateTrackerCard(select.value)"
+          >
+            <option selected>--Select Country--</option>
+            <option value="{{ country }}" *ngFor="let country of countries">{{
+              country
+            }}</option>
+          </select>
+          <small id="helpId" class="text-muted"
+            >Please select a different country to get result</small
+          >
+        </div>
+      </div>
+    </div>
+    <hr />
+    <app-tracker-card
+      [totalConfirmed]="totalConfirmed"
+      [totalActive]="totalActive"
+      [totalDeaths]="totalDeaths"
+      [totalRecovered]="totalRecovered"
+    ></app-tracker-card>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-header text-uppercase">
+            Line Chart representation
+          </div>
+          <div class="card-body">
+            <google-chart [data]="lineChart"></google-chart>
+          </div>
+        </div>
+      </div>
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+      <div class="card">
+        <div class="card-header text-uppercase">
+          day by day record
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Country: {{ currentCountry }}</h5>
+          <div class="row">
+            <div class="col table-responsive">
+              <table class="table table-sm table-striped table-dark">
+                <thead class="thead-inverse">
+                  <tr>
+                    <th>#</th>
+                    <th>Date</th>
+                    <th>Cases</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of selectedCountryData; index as i">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ item.date | date }}</td>
+                    <td>{{ item.case }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

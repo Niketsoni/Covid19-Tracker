@@ -1,0 +1,120 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container-fluid text-center">
+    <h2>Corona Covid-19 Tracker</h2>
+    <hr />
+    <app-tracker-card
+      [totalConfirmed]="totalConfirmed"
+      [totalActive]="totalActive"
+      [totalDeaths]="totalDeaths"
+      [totalRecovered]="totalRecovered"
+    ></app-tracker-card>
+  </div>
+</div>
+<!-- <div class="row">
+  <div class="col">
+    <label class="radio-inline"
+      ><input
+        type="radio"
+        name="radioBtn"
+        id="optradioConfirmed"
+        #Confirmed
+        value="Confirmed"
+        (click)="updateChart(Confirmed)"
+      />Confirmed</label
+    >
+    <label class="radio-inline"
+      ><input
+        type="radio"
+        name="radioBtn"
+        id="optradioActive"
+        #Active
+        value="Active"
+        (click)="updateChart(Active)"
+      />Active</label
+    >
+    <label class="radio-inline"
+      ><input
+        type="radio"
+        name="radioBtn"
+        id="optradioDeath"
+        #Death
+        value="Death"
+        (click)="updateChart(Death)"
+      />Death</label
+    >
+    <label class="radio-inline"
+      ><input
+        type="radio"
+        name="radioBtn"
+        id="optradioRecovered"
+        #Recovered
+        value="Recovered"
+        (click)="updateChart(Recovered)"
+      />Recovered</label
+    >
+  </div>
+</div> -->
+<div class="container-fluid mt-5">
+  <div class="row">
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+      <div class="card">
+        <div class="card-header text-uppercase">
+          Pie Chart representation
+        </div>
+        <div class="card-body">
+          <google-chart [data]="pieChart"></google-chart>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+      <div class="card">
+        <div class="card-header text-uppercase">
+          Column Chart representation
+        </div>
+        <div class="card-body">
+          <google-chart [data]="columnChart"></google-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt-5">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header text-uppercase">
+          Global Data List
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">country wise total records</h5>
+          <div class="row">
+            <div class="col table-responsive">
+              <table class="table table-sm table-striped table-dark">
+                <thead class="thead-inverse">
+                  <tr>
+                    <th>#</th>
+                    <th>Country</th>
+                    <th>Confirmed Cases</th>
+                    <th>Active Cases</th>
+                    <th>Deaths</th>
+                    <th>Recovered</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of globalData; index as i">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ item.country }}</td>
+                    <td>{{ item.confirmed }}</td>
+                    <td>{{ item.active }}</td>
+                    <td>{{ item.deaths }}</td>
+                    <td>{{ item.recovered }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
